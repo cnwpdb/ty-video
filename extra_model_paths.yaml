@@ -1,0 +1,29 @@
+runpod_volume_models:
+    base_path: /runpod-volume/models/
+    checkpoints: checkpoints/
+    clip: clip/
+    clip_vision: clip_vision/
+    text_encoders: text_encoders/
+    unet: unet/
+    diffusion_models: diffusion_models/
+    vae: vae/
+    loras: loras/
+    upscale_models: upscale_models/
+    controlnet: controlnet/
+    embeddings: embeddings/
+    hypernetworks: hypernetworks/
+
+workspace_models:
+    base_path: /workspace/ComfyUI/models/
+    checkpoints: checkpoints/
+    clip: clip/
+    clip_vision: clip_vision/
+    text_encoders: text_encoders/
+    unet: unet/
+    diffusion_models: diffusion_models/
+    vae: vae/
+    loras: loras/
+    upscale_models: upscale_models/
+    controlnet: controlnet/
+    embeddings: embeddings/
+    hypernetworks: hypernetworks/
