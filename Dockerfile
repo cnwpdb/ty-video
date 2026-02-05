@@ -58,12 +58,6 @@ RUN git clone https://github.com/chflame163/ComfyUI_LayerStyle_Advance.git && \
     cd ComfyUI_LayerStyle_Advance && \
     ( [ -f requirements.txt ] && pip install -r requirements.txt --no-cache-dir || echo "skip" )
 
-RUN git clone https://github.com/Fannovel16/ComfyUI-Frame-Interpolation.git && \
-    cd ComfyUI-Frame-Interpolation && \
-    pip install cupy-cuda12x --no-cache-dir && \
-    pip install -r requirements-no-cupy.txt --no-cache-dir && \
-    mkdir -p ckpts
-
 RUN git clone https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git && \
     git clone https://github.com/rgthree/rgthree-comfy.git && \
     git clone https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git && \
