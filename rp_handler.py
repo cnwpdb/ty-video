@@ -59,7 +59,7 @@ def handler(event):
                 print(f"Saved input image: {name}")
             except Exception as e:
                 print(f"Failed to save input image: {str(e)}")
-
+    
     if "workflow" in input_payload:
         workflow = input_payload["workflow"]
     else:
@@ -69,7 +69,7 @@ def handler(event):
     # Send Prompt
     req_data = json.dumps({"prompt": workflow}).encode('utf-8')
     req = urllib.request.Request(f"{APP_URL}/prompt", data=req_data, headers={'Content-Type': 'application/json'})
-
+    
     try:
         with urllib.request.urlopen(req) as response:
             resp_data = json.loads(response.read())
@@ -94,29 +94,29 @@ def handler(event):
 
     # Collect Outputs
     final_output = {"status": "success", "images": [], "videos": []}
-
+    
     # 1. Inspect ComfyUI History Output (Standard Nodes)
     outputs = history_data[prompt_id].get('outputs', {})
-
+    
     # 2. Heuristic: Scan Output Folder for recent files (Robust fallback for VHS/Custom nodes)
     # We look for files created in the last 60 seconds to avoid returning old junk
     output_dir = "/comfyui/output"
     recent_limit = 300 # Look back 5 mins
     now = time.time()
-
+    
     found_files = []
-
+    
     # Extensions to capture
     extensions = ['*.mp4', '*.gif', '*.png', '*.jpg', '*.webp']
     for ext in extensions:
         for fpath in glob.glob(os.path.join(output_dir, ext)):
             if os.path.getmtime(fpath) > now - recent_limit:
                 found_files.append(fpath)
-
+    
     for fpath in found_files:
         filename = os.path.basename(fpath)
         b64_data = get_base64_file(fpath)
-
+        
         if filename.endswith('.mp4') or filename.endswith('.gif'):
             final_output["videos"].append({
                 "filename": filename,
