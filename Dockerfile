@@ -96,6 +96,12 @@ RUN git clone https://github.com/chflame163/ComfyUI_LayerStyle_Advance.git && \
     cd ComfyUI_LayerStyle_Advance && \
     ( [ -f requirements.txt ] && pip install -r requirements.txt --no-cache-dir || echo "requirements.txt not found" )
 
+# ComfyUI-Frame-Interpolation (RIFE 帧插值 - 视频流畅度优化)
+RUN git clone https://github.com/Fannovel16/ComfyUI-Frame-Interpolation.git && \
+    cd ComfyUI-Frame-Interpolation && \
+    ( [ -f requirements.txt ] && pip install -r requirements.txt --no-cache-dir || echo "requirements.txt not found" ) && \
+    mkdir -p ckpts
+
 # RES4LYF
 # RUN git clone https://github.com/ClownsharkBatwing/RES4LYF.git \
 #   && cd RES4LYF \
