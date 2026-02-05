@@ -25,8 +25,6 @@ COPY extra_model_paths.yaml /comfyui/extra_model_paths.yaml
 # ============================================================================
 WORKDIR /comfyui/custom_nodes
 
-# --- A. Nodes with Dependencies ---
-
 # WAS Node Suite
 RUN git clone https://github.com/WASasquatch/was-node-suite-comfyui.git && \
     cd was-node-suite-comfyui && \
@@ -40,60 +38,56 @@ RUN git clone https://github.com/ltdrdata/ComfyUI-Impact-Pack.git && \
 # ComfyUI-Impact-Subpack
 RUN git clone https://github.com/ltdrdata/ComfyUI-Impact-Subpack.git && \
     cd ComfyUI-Impact-Subpack && \
-    ( [ -f requirements.txt ] && pip install -r requirements.txt --no-cache-dir || echo "requirements.txt not found" )
+    ( [ -f requirements.txt ] && pip install -r requirements.txt --no-cache-dir || echo "No requirements.txt" )
 
 # ComfyUI-PainterI2V
 RUN git clone https://github.com/princepainter/ComfyUI-PainterI2V.git && \
     cd ComfyUI-PainterI2V && \
-    ( [ -f requirements.txt ] && pip install -r requirements.txt --no-cache-dir || echo "requirements.txt not found" )
+    ( [ -f requirements.txt ] && pip install -r requirements.txt --no-cache-dir || echo "No requirements.txt" )
 
 # comfy_mtb
 RUN git clone https://github.com/melMass/comfy_mtb.git && \
     cd comfy_mtb && \
-    ( [ -f requirements.txt ] && pip install -r requirements.txt --no-cache-dir || echo "requirements.txt not found" )
+    ( [ -f requirements.txt ] && pip install -r requirements.txt --no-cache-dir || echo "No requirements.txt" )
 
 # ComfyUI-VideoHelperSuite (VHS)
 RUN git clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git && \
     cd ComfyUI-VideoHelperSuite && \
-    ( [ -f requirements.txt ] && pip install -r requirements.txt --no-cache-dir || echo "requirements.txt not found" )
+    ( [ -f requirements.txt ] && pip install -r requirements.txt --no-cache-dir || echo "No requirements.txt" )
 
 # ComfyUI-KJNodes
 RUN git clone https://github.com/kijai/ComfyUI-KJNodes.git && \
     cd ComfyUI-KJNodes && \
-    ( [ -f requirements.txt ] && pip install -r requirements.txt --no-cache-dir || echo "requirements.txt not found" )
+    ( [ -f requirements.txt ] && pip install -r requirements.txt --no-cache-dir || echo "No requirements.txt" )
 
 # ComfyUI-Easy-Use
 RUN git clone https://github.com/yolain/ComfyUI-Easy-Use.git && \
     cd ComfyUI-Easy-Use && \
-    ( [ -f requirements.txt ] && pip install -r requirements.txt --no-cache-dir || echo "requirements.txt not found" )
+    ( [ -f requirements.txt ] && pip install -r requirements.txt --no-cache-dir || echo "No requirements.txt" )
 
 # ComfyUI_essentials
 RUN git clone https://github.com/cubiq/ComfyUI_essentials.git && \
     cd ComfyUI_essentials && \
-    ( [ -f requirements.txt ] && pip install -r requirements.txt --no-cache-dir || echo "requirements.txt not found" )
+    ( [ -f requirements.txt ] && pip install -r requirements.txt --no-cache-dir || echo "No requirements.txt" )
 
 # ComfyUI_LayerStyle
 RUN git clone https://github.com/chflame163/ComfyUI_LayerStyle.git && \
     cd ComfyUI_LayerStyle && \
-    ( [ -f requirements.txt ] && pip install -r requirements.txt --no-cache-dir || echo "requirements.txt not found" )
+    ( [ -f requirements.txt ] && pip install -r requirements.txt --no-cache-dir || echo "No requirements.txt" )
 
 # ComfyUI_LayerStyle_Advance
 RUN git clone https://github.com/chflame163/ComfyUI_LayerStyle_Advance.git && \
     cd ComfyUI_LayerStyle_Advance && \
-    ( [ -f requirements.txt ] && pip install -r requirements.txt --no-cache-dir || echo "requirements.txt not found" )
+    ( [ -f requirements.txt ] && pip install -r requirements.txt --no-cache-dir || echo "No requirements.txt" )
 
-# === CRITICAL FIX: MANUAL RIFE INSTALLATION ===
-# We bypass the unstable 'install.py' script completely.
+# === RIFE MANUAL INSTALL (Fixed: No inline comments) ===
 RUN git clone https://github.com/Fannovel16/ComfyUI-Frame-Interpolation.git && \
     cd ComfyUI-Frame-Interpolation && \
-    # 1. Manually install CuPy for CUDA 12 (RunPod Standard)
     pip install cupy-cuda12x --no-cache-dir && \
-    # 2. Install rest of requirements
     pip install -r requirements-no-cupy.txt --no-cache-dir && \
-    # 3. Create models directory
     mkdir -p ckpts
 
-# --- B. Nodes without specific dependencies ---
+# Other nodes without specific dependencies
 RUN git clone https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git && \
     git clone https://github.com/rgthree/rgthree-comfy.git && \
     git clone https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git && \
