@@ -1,3 +1,4 @@
+# 新增 RIFE 帧插值 - 视频流畅度优化
 # 1. 基础镜像
 FROM runpod/worker-comfyui:5.5.1-base
 
