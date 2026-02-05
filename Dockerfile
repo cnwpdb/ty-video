@@ -1,4 +1,3 @@
-# 新增 RIFE 帧插值 - 视频流畅度优化
 # 1. 基础镜像
 FROM runpod/worker-comfyui:5.5.1-base
 
@@ -97,7 +96,7 @@ RUN git clone https://github.com/chflame163/ComfyUI_LayerStyle_Advance.git && \
     cd ComfyUI_LayerStyle_Advance && \
     ( [ -f requirements.txt ] && pip install -r requirements.txt --no-cache-dir || echo "requirements.txt not found" )
 
-# ComfyUI-Frame-Interpolation (RIFE 帧插值 - 视频流畅度优化)
+# ComfyUI-Frame-Interpolation (RIFE - Video Frame Interpolation)
 RUN git clone https://github.com/Fannovel16/ComfyUI-Frame-Interpolation.git && \
     cd ComfyUI-Frame-Interpolation && \
     ( [ -f requirements.txt ] && pip install -r requirements.txt --no-cache-dir || echo "requirements.txt not found" ) && \
