@@ -1,3 +1,4 @@
+# ty-video Serverless Handler - 稳定版本（不含 RIFE 插帧）
 import time
 import json
 import urllib.request
@@ -99,7 +100,6 @@ def handler(event):
     outputs = history_data[prompt_id].get('outputs', {})
     
     # 2. Heuristic: Scan Output Folder for recent files (Robust fallback for VHS/Custom nodes)
-    # We look for files created in the last 60 seconds to avoid returning old junk
     output_dir = "/comfyui/output"
     recent_limit = 300 # Look back 5 mins
     now = time.time()
