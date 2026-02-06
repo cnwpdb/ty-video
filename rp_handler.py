@@ -137,24 +137,8 @@ def handler(event):
     return final_output
 
 # Start ComfyUI in Background
-def setup_rife_model():
-    """Create symlink from network volume to plugin ckpts directory"""
-    rife_source = "/workspace/models/vfi/rife46.pth"
-    rife_target = "/comfyui/custom_nodes/ComfyUI-Frame-Interpolation/ckpts/rife46.pth"
-    
-    if os.path.exists(rife_source):
-        os.makedirs(os.path.dirname(rife_target), exist_ok=True)
-        # Remove existing file/link if present
-        if os.path.exists(rife_target) or os.path.islink(rife_target):
-            os.remove(rife_target)
-        os.symlink(rife_source, rife_target)
-        print(f"[RIFE] Linked: {rife_source} -> {rife_target}")
-    else:
-        print(f"[RIFE] Warning: Model not found at {rife_source}")
-
 def start_comfy():
     print("Starting ComfyUI...")
-    setup_rife_model()  # Initialize RIFE model symlink
     subprocess.Popen(["python", "main.py", "--listen", "--port", "8188"], cwd="/comfyui")
     return wait_for_service(APP_URL)
 
