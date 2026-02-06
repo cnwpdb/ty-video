@@ -70,8 +70,11 @@ RUN pip install soundfile rotary-embedding-torch --no-cache-dir
 
 # RIFE Frame-Interpolation (补帧核心插件)
 RUN git clone --depth 1 https://github.com/Fannovel16/ComfyUI-Frame-Interpolation.git
-RUN cd ComfyUI-Frame-Interpolation && pip install -r requirements.txt --no-cache-dir
-RUN mkdir -p /comfyui/custom_nodes/ComfyUI-Frame-Interpolation/ckpts
+WORKDIR /comfyui/custom_nodes/ComfyUI-Frame-Interpolation
+RUN pip install -r requirements-no-cupy.txt --no-cache-dir
+RUN python install.py
+RUN mkdir -p ckpts
+WORKDIR /comfyui/custom_nodes
 
 # Global dependencies
 WORKDIR /comfyui
